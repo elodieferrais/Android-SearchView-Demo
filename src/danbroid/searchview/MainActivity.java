@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     searchView = new SearchView(getSupportActionBar().getThemedContext());
     searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-    searchView.setSubmitButtonEnabled(true);
+    searchView.setSubmitButtonEnabled(false);
     searchView.setIconifiedByDefault(true);
     searchView.setMaxWidth(1000);
 
@@ -92,8 +92,6 @@ public class MainActivity extends AppCompatActivity {
     MenuItemCompat.setShowAsAction(searchItem,
         MenuItemCompat.SHOW_AS_ACTION_ALWAYS | MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
 
-    menu.add(0, R.id.menu_about, 0, R.string.lbl_about);
-
     return super.onCreateOptionsMenu(menu);
   }
 
@@ -121,32 +119,7 @@ public class MainActivity extends AppCompatActivity {
   @Override
   public boolean onSearchRequested() {
     showSearch(true);
-
     // dont show the built-in search dialog
     return false;
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-    case R.id.menu_about:
-      showAboutDialog();
-      return true;
-    }
-    return super.onOptionsItemSelected(item);
-  }
-
-  protected void showAboutDialog() {
-
-    AlertDialog.Builder builder = new AlertDialog.Builder(getSupportActionBar().getThemedContext(),
-        R.style.DialogTheme);
-    builder.setPositiveButton(android.R.string.ok, null);
-    builder.setTitle(getString(R.string.app_name) + " version: " + getString(R.string.versionName));
-    builder.setIcon(R.drawable.ic_launcher);
-    SpannableString aboutMessage = new SpannableString(Html.fromHtml(getString(R.string.msg_about)));
-    builder.setMessage(aboutMessage);
-
-    TextView messageText = (TextView) builder.show().findViewById(android.R.id.message);
-    messageText.setMovementMethod(LinkMovementMethod.getInstance());
   }
 }
