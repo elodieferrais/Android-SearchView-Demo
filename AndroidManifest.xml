@@ -36,10 +36,6 @@
 				android:resource="@xml/searchable" />
 		</activity>
 
-		<provider
-			android:name="danbroid.searchview.SuggestionProvider"
-			android:authorities="danbroid.searchview.SuggestionProvider"
-			android:exported="false" />
-	</application>
+    </application>
 
 </manifest>

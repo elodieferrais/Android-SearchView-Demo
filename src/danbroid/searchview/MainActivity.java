@@ -30,7 +30,6 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
   private MenuItem searchItem;
-  private SearchRecentSuggestions suggestions;
   private SearchView searchView;
 
   @Override
@@ -41,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
-
-    suggestions = new SearchRecentSuggestions(this, SuggestionProvider.AUTHORITY, SuggestionProvider.MODE);
 
     // Associate searchable configuration with the SearchView
     SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
