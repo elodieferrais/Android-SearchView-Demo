@@ -29,20 +29,12 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-  private static final org.slf4j.Logger log;
-
-  static {
-    AndroidLoggerFactory.configureDefaultLogger(MainActivity.class.getPackage());
-    log = LoggerFactory.getLogger(MainActivity.class);
-  }
-
   private MenuItem searchItem;
   private SearchRecentSuggestions suggestions;
   private SearchView searchView;
 
   @Override
   protected void onCreate(Bundle state) {
-    log.info("onCreate() intent:{}", getIntent());
     super.onCreate(state);
 
     setContentView(R.layout.layout);
@@ -54,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
     // Associate searchable configuration with the SearchView
     SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-    log.debug("onCreateOptionsMenu() searchManager: {}", searchManager);
 
     searchView = new SearchView(getSupportActionBar().getThemedContext());
     searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
@@ -69,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
     searchAutoComplete.setOnFocusChangeListener(new OnFocusChangeListener() {
       @Override
       public void onFocusChange(View v, boolean hasFocus) {
-        log.trace("onFocusChange(): " + hasFocus);
         if (!hasFocus)
           showSearch(false);
       }
@@ -87,32 +77,6 @@ public class MainActivity extends AppCompatActivity {
 
     } catch (Exception e) {
     }
-
-    findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        String query = SuggestionProvider.generateRandomSuggestion();
-
-        suggestions.saveRecentQuery(query, "is a nice cheese");
-      }
-    });
-
-    findViewById(R.id.clear_button).setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        log.debug("clearing suggestions");
-        suggestions.clearHistory();
-      }
-    });
-
-    CheckBox submitEnabled = (CheckBox) findViewById(R.id.submit_enabled_checkbox);
-    submitEnabled.setChecked(searchView.isSubmitButtonEnabled());
-    submitEnabled.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-      @Override
-      public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        searchView.setSubmitButtonEnabled(isChecked);
-      }
-    });
 
   }
 
@@ -136,13 +100,11 @@ public class MainActivity extends AppCompatActivity {
   @Override
   protected void onNewIntent(Intent intent) {
     super.onNewIntent(intent);
-    log.warn("onNewIntent() :{}", intent);
     showSearch(false);
     Bundle extras = intent.getExtras();
     String userQuery = String.valueOf(extras.get(SearchManager.USER_QUERY));
     String query = String.valueOf(extras.get(SearchManager.QUERY));
 
-    log.debug("query: {} user_query: {}", query, userQuery);
     Toast.makeText(this, "query: " + query + " user_query: " + userQuery, Toast.LENGTH_SHORT).show();
   }
 
@@ -158,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
    */
   @Override
   public boolean onSearchRequested() {
-    log.trace("onSearchRequested();");
     showSearch(true);
 
     // dont show the built-in search dialog
@@ -176,7 +137,6 @@ public class MainActivity extends AppCompatActivity {
   }
 
   protected void showAboutDialog() {
-    log.trace("showAboutDialog()");
 
     AlertDialog.Builder builder = new AlertDialog.Builder(getSupportActionBar().getThemedContext(),
         R.style.DialogTheme);

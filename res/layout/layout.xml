@@ -16,22 +16,4 @@
 		app:theme="@style/ToolbarTheme" >
 	</android.support.v7.widget.Toolbar>
 
-	<Button
-		android:id="@+id/button"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="Click to add another suggestion to the search box" />
-
-	<Button
-		android:id="@+id/clear_button"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="Click to clear all suggestions" />
-
-	<CheckBox
-		android:id="@+id/submit_enabled_checkbox"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="Submit Button Enabled" />
-
 </LinearLayout>
