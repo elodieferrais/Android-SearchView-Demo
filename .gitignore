@@ -2,3 +2,8 @@
 /gen
 /build
 /.gradle
+/.idea
+.idea
+*.iml
+local.properties
+
