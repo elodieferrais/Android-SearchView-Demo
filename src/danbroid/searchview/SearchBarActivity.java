@@ -70,7 +70,7 @@ public class SearchBarActivity extends AppCompatActivity {
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
 
-    searchItem = menu.add(android.R.string.search_go);
+    searchItem = menu.add(0, R.id.menu_search, 0, R.string.search_action);
 
     searchItem.setIcon(R.drawable.ic_search_white_36dp);
 
