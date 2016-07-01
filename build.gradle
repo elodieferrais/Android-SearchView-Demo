@@ -56,7 +56,7 @@ android {
 task run(type: Task, dependsOn: 'installDebug') {
   doLast {
     println "Running application ..."
-    "$System.env.ANDROID_SDK/platform-tools/adb shell am start -c android.intent.category.LAUNCHER -n danbroid.searchview/.MainActivity".execute()
+    "$System.env.ANDROID_SDK/platform-tools/adb shell am start -c android.intent.category.LAUNCHER -n danbroid.searchview/.SearchBarActivity".execute()
   }
 }
 

@@ -24,7 +24,7 @@
 	android:background="@drawable/dropdown_item_background" >
 
 	<!--
-         Icons come first in the layout, since their placement doesn't depend on
+         Icons come first in the toolbar_layout, since their placement doesn't depend on
          the placement of the text views.
 	-->
 
