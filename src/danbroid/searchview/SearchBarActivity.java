@@ -2,32 +2,22 @@ package danbroid.searchview;
 
 import java.lang.reflect.Field;
 
-import org.slf4j.LoggerFactory;
-import org.slf4j.impl.AndroidLoggerFactory;
-
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.SearchRecentSuggestions;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
-import android.text.SpannableString;
-import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class SearchBarActivity extends AppCompatActivity {
 
   private MenuItem searchItem;
   private SearchView searchView;
@@ -36,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle state) {
     super.onCreate(state);
 
-    setContentView(R.layout.layout);
+    setContentView(R.layout.toolbar_layout);
 
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
@@ -108,15 +98,5 @@ public class MainActivity extends AppCompatActivity {
       MenuItemCompat.expandActionView(searchItem);
     else
       MenuItemCompat.collapseActionView(searchItem);
-  }
-
-  /**
-   * Called when the hardware search button is pressed
-   */
-  @Override
-  public boolean onSearchRequested() {
-    showSearch(true);
-    // dont show the built-in search dialog
-    return false;
   }
 }
