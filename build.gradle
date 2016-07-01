@@ -3,16 +3,19 @@ task wrapper(type: Wrapper) {
 }
 
 buildscript {
-  repositories { mavenCentral() }
-  dependencies { classpath "com.android.tools.build:gradle:1.5.0" }
+  repositories {
+      jcenter()
+  }
+  dependencies { classpath 'com.android.tools.build:gradle:2.1.0' }
 }
 
 repositories {
-  mavenLocal() 
+    jcenter()
+    mavenLocal()
   mavenCentral()
 }
 
-apply plugin: 'android'
+apply plugin: 'com.android.application'
 
 
 android {
@@ -60,7 +63,7 @@ task run(type: Task, dependsOn: 'installDebug') {
 defaultTasks 'run'
 
 dependencies {  
-  compile 'com.android.support:appcompat-v7:23.1.1'
+  compile 'com.android.support:appcompat-v7:23.4.0'
   compile fileTree(dir: 'libs', include: ['*.jar'])
 }
 
